@@ -1,4 +1,6 @@
 package exercise1;
+import java.util.Scanner;
+import java.util.Random;
 
 /**
  * A class that fills a hand of 7 cards with random Card Objects and then asks the user to pick a card.
@@ -13,9 +15,50 @@ public class CardTrick {
     public static void main(String[] args) {
         
         Card[] hand = new Card[7];
-
+        Random random = new Random();
+        Scanner input = new Scanner(System.in);
+        
         for (int i = 0; i < hand.length; i++) {
             Card card = new Card();
+            card.setValue(random.nextInt(13) + 1);
+            card.setSuit(Card.SUITS[random.nextInt(4)]);
+            hand[i] = card;
+        }
+
+        System.out.print("Enter the value of the card: ");
+        int value = input.nextInt();
+        System.out.print("Enter the suit of the card: ");
+        int suit = input.nextInt();
+
+        Card userCard = new Card();
+        userCard.setValue(value);
+        userCard.setSuit(Card.SUITS[suit - 1]);
+
+        boolean found = false;
+        for (int i = 0; i < hand.length; i++) {
+            if (hand[i].equals(userCard)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            printInfo();
+        } else {
+            System.out.println("Sorry your card was not found in the hand.");
+        }
+        
+        
+        int userValue = input.nextInt();
+        String userSuit = input.nextLine();
+        
+        
+
+        for (int i = 0; i < hand.length; i++) {
+            if(hand[i].getValue()==userValue &&
+               hand[i].getSuit().equals(userSuit)){
+                printInfo();
+            }
             //card.setValue(insert call to random number generator here)
             // 
             //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
@@ -45,19 +88,19 @@ public class CardTrick {
         System.out.println("Congratulations, you guessed right!");
         System.out.println();
         
-        System.out.println("My name is Paul, but you can call me prof, Paul or sir");
+        System.out.println("My name is Sowad, but you can call me Sid");
         System.out.println();
         
-        System.out.println("My career ambitions:");
-        System.out.println("-- Be more active on LinkedIn");
-        System.out.println("-- Have a semester with no violations of academic integrity!");
+        System.out.println("My career ambitions: ");
+        System.out.println("-- Be more active on");
+        System.out.println("-- Pass the semester!");
 	System.out.println();	
 
         System.out.println("My hobbies:");
-        System.out.println("-- Investing");
+        System.out.println("-- Working out");
         System.out.println("-- Cooking");
-        System.out.println("-- Reading/Watching TV");
-        System.out.println("-- Riding my motorcycle");
+        System.out.println("-- Watching TV");
+        System.out.println("-- Outdoors");
 
         System.out.println();
         
